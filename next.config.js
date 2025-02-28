@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./next-i18next.config');
 
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -28,6 +29,7 @@ const nextConfig = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js'
   },
+  i18n,
 }
 
 module.exports = nextConfig
