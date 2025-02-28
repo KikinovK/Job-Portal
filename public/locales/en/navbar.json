@@ -1,0 +1,14 @@
+{
+  "title": "JOB-PORTAL",
+  "menu": {
+    "home": "Home",
+    "post_jobs": "Post Jobs",
+    "view_jobs": "View Jobs",
+    "posted_jobs": "Posted Jobs",
+    "dashboard": "Dashboard",
+    "contact": "Contact",
+    "jobs": "Jobs",
+    "login": "Login",
+    "register": "Register"
+  }
+}
