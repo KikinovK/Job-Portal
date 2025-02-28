@@ -5,11 +5,12 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
+import { appWithTranslation } from 'next-i18next';
 
 
 
 
-export default function App({
+function App({
   Component,
   pageProps: { session, ...pageProps },
 })
@@ -35,3 +36,5 @@ export default function App({
     </Provider>
   )
 }
+
+export default appWithTranslation(App)
