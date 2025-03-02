@@ -1,7 +1,7 @@
 
-export const register_me = async (formData) => {
+export const register_me = async (formData, locale) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register${locale ? `?lng=${locale}` : ''}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -15,9 +15,9 @@ export const register_me = async (formData) => {
     }
 }
 
-export const login_me = async (formData) => {
+export const login_me = async (formData, locale) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login${locale ? `?lng=${locale}` : ''}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,9 +33,9 @@ export const login_me = async (formData) => {
 
 
 
-export const forget_password = async (formData) => {
+export const forget_password = async (formData, locale) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/forgetPassword`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/forgetPassword${locale ? `?lng=${locale}` : ''}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,4 +48,3 @@ export const forget_password = async (formData) => {
         console.log('error in forget Password (service) => ', error);
     }
 }
-
