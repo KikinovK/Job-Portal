@@ -30,6 +30,16 @@ const nextConfig = {
     filename: '[name].bundle.js'
   },
   i18n,
+  webpack: (config, { isServer }) => {
+    config.resolve.alias['react-datepicker/dist/react-datepicker.css'] = path.join(
+      __dirname,
+      'node_modules',
+      'react-datepicker',
+      'dist',
+      'react-datepicker.css'
+    );
+    return config;
+  },
 }
 
 module.exports = nextConfig
