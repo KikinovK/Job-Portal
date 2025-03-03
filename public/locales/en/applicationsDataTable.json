@@ -1,0 +1,13 @@
+{
+  "name": "Name",
+  "email": "Email",
+  "status": "Status",
+  "cv": "CV",
+  "action": "Action",
+  "download_cv": "Download CV",
+  "details_button": "Details",
+  "approved_button": "Approved",
+  "reject_button": "Reject",
+  "total_applications_title": "Total Applications :",
+  "search_placeholder": "Search with Applicant name..."
+}

@@ -7,7 +7,10 @@ import React, { useEffect, useState } from 'react'
 import { InfinitySpin } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import useSWR from 'swr'
+import useSWR from 'swr';
+
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function PostedJobsDetails() {
     const router = useRouter();
@@ -18,6 +21,8 @@ export default function PostedJobsDetails() {
 
     const [application, setApplication] = useState([]);
 
+    const { locale } = router;
+    const { t } = useTranslation('common');
 
     useEffect(() => {
         if (!userId || !Cookies.get('token')) {
@@ -25,8 +30,11 @@ export default function PostedJobsDetails() {
         }
     }, [user, userId, Cookies])
 
-    const { data, error , isLoading } = useSWR(`/get-all-Application`, () => get_all_applications(id));
-    
+    const { data, error , isLoading } = useSWR(
+        id ? '/get-all-Application' : null,
+        () => get_all_applications(id, locale)
+    );
+
      useEffect(() => {
         if(data) setApplication(data?.data)
     }, [data])
@@ -41,14 +49,14 @@ export default function PostedJobsDetails() {
 
                     <div className='bg-gray w-full h-screen flex items-center flex-col justify-center'>
                         <InfinitySpin width='200' color="#4f46e5" />
-                        <p className='text-xs uppercase'>Loading Resources Hold Tight...</p>
+                        <p className='text-xs uppercase'>{t('loading')}.</p>
                     </div>
                 ) : (
                     <>
                         <NavBar />
                         <div className='w-full  pt-20'>
                             <div className='w-full h-20 bg-gray-50 text-indigo-600 font-bold flex items-center justify-center flex-col'>
-                                <h1 className='text-3xl'>Detail List of  Jobs Application</h1>
+                                <h1 className='text-3xl'>{t('detailPostedJob:title')}</h1>
                             </div>
                             <div className='w-full h-full px-4 py-4 flex  overflow-y-auto  items-start justify-center flex-wrap'>
                                 <ApplicationsDataTable application={application}  />
@@ -61,4 +69,19 @@ export default function PostedJobsDetails() {
 
         </>
     )
+}
+
+export async function getStaticProps({ locale }) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ['common', 'navbar', 'detailPostedJob', 'applicationsDataTable', 'table'])),
+      },
+    };
+  }
+
+export async function getStaticPaths() {
+    return {
+        paths: [],
+        fallback: 'blocking',
+    };
 }
