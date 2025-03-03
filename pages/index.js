@@ -79,7 +79,7 @@ export default function Home() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'navbar', 'intro'])),
+      ...(await serverSideTranslations(locale, ['common', 'navbar', 'intro', 'jobCard'])),
     },
   };
 }

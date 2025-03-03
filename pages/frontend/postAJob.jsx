@@ -113,7 +113,7 @@ export default function PostAJob() {
                 <h1 className='text-xl mt-4 uppercase tracking-widest border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl'>{t('enter_job_details')}</h1>
                 <form onSubmit={handleSubmit} className="sm:w-1/2 w-full px-4 mx-4  h-full" >
                     <div className='w-full mb-4  flex flex-col items-start justify-center'>
-                        <label htmlFor="title" className='mb-1 text-base font-semibold'>{t('title_label')} :</label>
+                        <label htmlFor="title" className='mb-1 text-base font-semibold'>{t('title_label')}</label>
                         <input onChange={(e) => setFormData({ ...formData, title: e.target.value })} type="text" id='title' className='w-full py-2 px-3 mb-2 border border-indigo-600 rounded' placeholder={t('title_placeholder')} />
                         {
                             error.title && <p className="text-sm text-red-500">{error.title}</p>
