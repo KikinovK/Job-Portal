@@ -8,17 +8,16 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
-
-
-
-
-
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 
 export default function ApplicationsDetail() {
-    
+
     const router = useRouter();
     const { id } = router.query;
+    const { locale } = router;
+    const { t } = useTranslation('common');
 
     const user = useSelector(state => state?.User?.userData)
     const userId = user?._id
@@ -29,11 +28,14 @@ export default function ApplicationsDetail() {
         }
     }, [user, userId, Cookies])
 
-    const { data, error, isLoading } = useSWR('/get-application-details', () => get_application_details(id))
+    const { data, error, isLoading } = useSWR(
+        id ? '/get-application-details' : null,
+        () => get_application_details(id, locale)
+    )
 
     if (error) return toast.error(error) && router.push('/frontend/postedJob')
 
-    
+
 
 
     return (
@@ -42,35 +44,51 @@ export default function ApplicationsDetail() {
                 isLoading ? (
                     <div className='bg-gray w-full h-screen flex items-center flex-col justify-center'>
                         <InfinitySpin width='200' color="#4f46e5" />
-                        <p className='text-xs uppercase'>Loading Resources Hold Tight...</p>
+                        <p className='text-xs uppercase'>{t('loading')}</p>
                     </div>
                 ) : (
                     <>
                         <NavBar />
                         <div className='w-full px-4 flex flex-wrap  pt-20 '>
                             <div className='w-full h-32 bg-gray-50 text-indigo-600 font-bold flex items-center justify-center flex-col'>
-                                <h1 className='text-3xl'>Application Detail</h1>
+                                <h1 className='text-3xl'>{t('applicationDetail:title')}</h1>
                             </div>
                             <div className='flex flex-col md:flex-row justify-center md:justify-around items-center w-full h-32 px-4'>
                                 <div className='flex py-2'>
-                                    <h1 className='text-base font-semibold px-2 '>Name</h1>
+                                    <h1 className='text-base font-semibold px-2 '>{t('applicationDetail:name')}</h1>
                                     <p className='text-sm px-2'>{data?.data?.name}</p>
                                 </div>
                                 <div className='flex py-2'>
-                                    <h1 className='text-base font-semibold px-2 '>Email</h1>
+                                    <h1 className='text-base font-semibold px-2 '>{t('applicationDetail:email')}</h1>
                                     <p className='text-sm px-2'>{data?.data?.email}</p>
                                 </div>
                                 <div className='flex py-2'>
-                                    <h1 className='text-base font-semibold px-2 '>Application Status</h1>
+                                    <h1 className='text-base font-semibold px-2 '>{t('applicationDetail:status')}</h1>
                                     <p className='text-sm px-2 uppercase font-extrabold'>{data?.data?.status}</p>
                                 </div>
                             </div>
                         </div>
-                       
+
 
                     </>
                 )
             }
         </>
     )
+}
+
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common', 'navbar', 'applicationDetail'])),
+        },
+    };
+}
+
+
+export async function getStaticPaths() {
+    return {
+        paths: [],
+        fallback: 'blocking',
+    };
 }
