@@ -1,0 +1,11 @@
+{
+  "apply_date": "Apply Date",
+  "company": "Company",
+  "job_title": "Job title",
+  "job_salary": "Job Salary",
+  "status": "Status",
+  "action": "Action",
+  "view_detail": "view Detail",
+  "total_applied_jobs": "Total Applied Jobs: ",
+  "search_placeholder": "Search with company name..."
+}

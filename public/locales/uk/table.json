@@ -1,0 +1,7 @@
+{
+  "no_data_message": "Немає записів для відображення",
+  "pagination": {
+    "rows_per_page_text": "Рядків на сторінку",
+    "range_separator_text": "з"
+  }
+}

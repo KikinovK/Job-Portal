@@ -1,0 +1,7 @@
+{
+  "no_data_message": "There are no records to display",
+  "pagination": {
+    "rows_per_page_text": "Rows per page",
+    "range_separator_text": "of"
+  }
+}

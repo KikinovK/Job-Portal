@@ -12,6 +12,9 @@ import { GiSuitcase } from 'react-icons/gi'
 import { InfinitySpin } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 
 
 
@@ -20,6 +23,9 @@ export default function Dashboard() {
   const [loading , setLoading] = useState(true)
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const { locale } = router;
+  const { t } = useTranslation('common');
 
   const activeUser = useSelector(state => state?.User?.userData)
   const id = activeUser?._id
@@ -30,8 +36,6 @@ export default function Dashboard() {
     }
   }, [activeUser, id, Cookies])
 
-  
-
 
   useEffect(() => {
     fetchAppliedJobs()
@@ -40,8 +44,8 @@ export default function Dashboard() {
 
   const fetchAppliedJobs = async () => {
 
-    const res = await get_my_applied_job(id)
-    const get_bookmarks =   await get_book_mark_job(id)
+    const res = await get_my_applied_job(id, locale)
+    const get_bookmarks =   await get_book_mark_job(id, locale)
     if (res.success || get_bookmarks.success) {
       dispatch(setAppliedJob(res?.data))
       dispatch(setBookMark(get_bookmarks?.data))
@@ -61,7 +65,7 @@ export default function Dashboard() {
 
           <div className='bg-gray w-full h-screen flex items-center flex-col justify-center'>
             <InfinitySpin width='200' color="#4f46e5" />
-            <p className='text-xs uppercase'>Loading Resources Hold Tight...</p>
+            <p className='text-xs uppercase'>{t('loading')}</p>
           </div>
         ) : (
           <>
@@ -72,7 +76,7 @@ export default function Dashboard() {
                 <div onClick={() => setShowTable('appliedJobs')} className='py-2 cursor-pointer border-indigo-600 border-b-2 px-2 w-60 h-32 rounded mx-2 my-2 bg-white flex items-center justify-center'>
                   <GiSuitcase className='bg-gray-50 text-indigo-600 rounded-full w-10 h-10' />
                   <div className='flex  flex-col mx-2 items-start justify-start px-2 '>
-                    <p className='text-xl font-semibold'>Total Applied</p>
+                    <p className='text-xl font-semibold'>{t('dashboard:total_applied')}</p>
                     <p className='text-lg font-semibold'>50+</p>
                   </div>
                 </div>
@@ -81,7 +85,7 @@ export default function Dashboard() {
                 <div onClick={() => setShowTable('savedJobs')} className='py-2 cursor-pointer border-b-teal-600 border-b-2 px-2 w-60 h-32 rounded mx-2 my-2 bg-white flex items-center justify-center'>
                   <BsFillBookmarkStarFill className='bg-gray-50 text-indigo-600 rounded-full w-10 h-10' />
                   <div className='flex  flex-col items-start mx-2 justify-start px-2 '>
-                    <p className='text-xl font-semibold'>Save Jobs</p>
+                    <p className='text-xl font-semibold'>{t('dashboard:saved_jobs')}</p>
                     <p className='text-lg font-semibold'>50+</p>
                   </div>
                 </div>
@@ -100,4 +104,12 @@ export default function Dashboard() {
 
     </>
   )
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'navbar', 'dashboard', 'savedJobDataTable', 'appliedJobDataTable','table'])),
+    },
+  };
 }
