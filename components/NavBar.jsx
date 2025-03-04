@@ -8,6 +8,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { setUserData } from '@/Utils/UserSlice';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { useTranslation } from 'next-i18next';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 
 
@@ -94,12 +95,15 @@ export default function NavBar() {
                     <p className='uppercase font-semibold tracking-widest text-lg'>{t('title')}</p>
                 </div>
                 <div className='px-2 h-full hidden items-center justify-center xl:flex'>
-                    <Link href={'/'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.home')}</Link>
-                    <Link href={'/frontend/postAJob'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.post_jobs')}</Link>
-                    <Link href={'/frontend/displayJobs'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.view_jobs')}</Link>
-                    <Link href={'/frontend/postedJob'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.posted_jobs')}</Link>
-                    <Link href={'/frontend/dashboard'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.dashboard')}</Link>
-                    <Link href={'/'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.contact')}</Link>
+                    <Link href={'/'} className="px-3 mx-3 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.home')}</Link>
+                    <Link href={'/frontend/postAJob'} className="px-3 mx-3 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.post_jobs')}</Link>
+                    <Link href={'/frontend/displayJobs'} className="px-3 mx-3 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.view_jobs')}</Link>
+                    <Link href={'/frontend/postedJob'} className="px-3 mx-3 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.posted_jobs')}</Link>
+                    <Link href={'/frontend/dashboard'} className="px-3 mx-3 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.dashboard')}</Link>
+                    <Link href={'/'} className="px-3 mx-3 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >{t('menu.contact')}</Link>
+                </div>
+                <div className="px-2 flex">
+                    <LanguageSwitcher />
                 </div>
                 <div className='px-2 h-full hidden items-center justify-center xl:flex ' >
                     {
@@ -111,8 +115,8 @@ export default function NavBar() {
                             </>
                         ) : (
                             <>
-                                <Link href={'/auth/login'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600'>{t('menu.login')}</Link>
-                                <Link href={'/auth/register'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white'>{t('menu.register')}</Link>
+                                <Link href={'/auth/login'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-3   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600'>{t('menu.login')}</Link>
+                                <Link href={'/auth/register'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-3   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white'>{t('menu.register')}</Link>
                             </>
                         )
                     }
@@ -151,8 +155,8 @@ export default function NavBar() {
                                         </>
                                     ) : (
                                         <>
-                                            <Link href={'/auth/login'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600'>{t('menu.login')}</Link>
-                                            <Link href={'/auth/register'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white'>{t('menu.register')}</Link>
+                                            <Link href={'/auth/login'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-3   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600'>{t('menu.login')}</Link>
+                                            <Link href={'/auth/register'} className='px-4 py-2 border border-white rounded uppercase tracking-widest mx-3   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white'>{t('menu.register')}</Link>
                                         </>
                                     )
                                 }
