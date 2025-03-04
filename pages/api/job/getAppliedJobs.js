@@ -35,7 +35,7 @@ const getAppliedJobs =  async (req, res) => {
 
     const userId = req.query.id;
 
-    if(!userId) return res.status(400).json({ success: false, message: i18next.t('error_logirn') })
+    if(!userId) return res.status(400).json({ success: false, message: i18next.t('error_login') })
 
     try {
         const gettingAppliedJobs  = await ApplyJob.find({user : userId}).populate('user').populate('job');
