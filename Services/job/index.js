@@ -3,14 +3,15 @@ import Cookies from "js-cookie";
 
 // post job api
 
-export const post_job = async (formData) => {
+export const post_job = async (formData, locale) => {
 
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/postAJob`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Cookies.get('token')}`
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
             },
             body: JSON.stringify(formData),
         })
@@ -39,11 +40,14 @@ export const get_job = async () => {
 }
 
 // get specified job api
-export const get_specified_job = async (id) => {
+export const get_specified_job = async (id, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getSpecifiedJob?id=${id}`, {
             method: 'GET',
-            headers : {'Authorization': `Bearer ${Cookies.get('token')}`}
+            headers : {
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
+            }
         })
         const data = res.json();
         return data;
@@ -56,11 +60,14 @@ export const get_specified_job = async (id) => {
 
 // apply  job api
 
-export const apply_job = async (formData) => {
+export const apply_job = async (formData, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/applyJob`, {
             method: 'POST',
-            headers : {'Authorization': `Bearer ${Cookies.get('token')}`},
+            headers : {
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
+            },
             body: formData,
         });
         const data = await res.json();
@@ -72,12 +79,13 @@ export const apply_job = async (formData) => {
 
 
 // get my all applied job api
- 
-export const get_my_applied_job = async (id) => {
+
+export const get_my_applied_job = async (id, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getAppliedJobs?id=${id}`, {
             method: 'GET',
-            headers : {'Authorization': `Bearer ${Cookies.get('token')}`}
+            headers : {'Authorization': `Bearer ${Cookies.get('token')}`},
+            'Accept-Language': locale,
         })
         const data = res.json();
         return data;
@@ -87,13 +95,16 @@ export const get_my_applied_job = async (id) => {
 }
 
 
-// get my all posted job api 
+// get my all posted job api
 
-export const get_my_posted_job = async (id) => {
+export const get_my_posted_job = async (id, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getPostedJobs?id=${id}`, {
             method: 'GET',
-            headers : {'Authorization': `Bearer ${Cookies.get('token')}`}
+            headers : {
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
+            }
         })
         const data = res.json();
         return data;
@@ -105,11 +116,14 @@ export const get_my_posted_job = async (id) => {
 
 // get my all application of specified jobs api
 
-export const get_all_applications = async (id) => {
+export const get_all_applications = async (id, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getAllApplicationsOfSpecifiedJob?id=${id}`, {
             method: 'GET',
-            headers : {'Authorization': `Bearer ${Cookies.get('token')}`}
+            headers : {
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
+            }
         })
         const data = res.json();
         return data;
@@ -121,13 +135,14 @@ export const get_all_applications = async (id) => {
 
 // change application status api
 
-export const change_application_status = async (formData) => {
+export const change_application_status = async (formData, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/responseOfApplication`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Cookies.get('token')}`
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
             },
             body: JSON.stringify(formData),
         })
@@ -140,11 +155,14 @@ export const change_application_status = async (formData) => {
 
 
 
-export const get_application_details = async (id) => {
+export const get_application_details = async (id, locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getApplicationDetail?id=${id}`, {
             method: 'GET',
-            headers : {'Authorization': `Bearer ${Cookies.get('token')}`}
+            headers : {
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
+            }
         })
         const data = res.json();
         return data;

@@ -14,7 +14,8 @@
     "password_required": "Password is required",
     "name_required": "Name is required",
     "job_required": "Job is required",
-    "user_required": "User is required"
+    "user_required": "User is required",
+    "about_required": "About is required"
   },
   "error_login": "Please Login",
   "error_retry_login": "Something Went Wrong Please Retry login !",
@@ -22,5 +23,6 @@
   "status_updated_successfully": "Status Updated Successfully",
   "job_already_bookmarked": "This Job is Already in Bookmark",
   "job_bookmarked_successfully": "Job Bookmarked successfully !",
-  "job_removed_successfully": "Job removed successfully !"
+  "job_removed_successfully": "Job removed successfully !",
+  "job_application_submitted_successfully": "Job application submitted successfully !"
 }

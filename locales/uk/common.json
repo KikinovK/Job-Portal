@@ -14,7 +14,8 @@
     "password_required": "Пароль є обов'язковим",
     "name_required": "Ім'я є обов'язковим",
     "job_required": "Вакансія є обов'язковою",
-    "user_required": "Користувач є обов'язковим"
+    "user_required": "Користувач є обов'язковим",
+    "about_required": "Поле опису є обов'язковим"
   },
   "error_login": "Будь ласка, увійдіть",
   "error_retry_login": "Щось пішло не так, будь ласка, спробуйте увійти знову!",
@@ -22,5 +23,6 @@
   "status_updated_successfully": "Статус успішно оновлено",
   "job_already_bookmarked": "Ця вакансія вже додана до закладок",
   "job_bookmarked_successfully": "Вакансія успішно додана до закладок!",
-  "job_removed_successfully": "Вакансія успішно видалена!"
+  "job_removed_successfully": "Вакансія успішно видалена!",
+  "job_application_submitted_successfully": "Заявку на вакансію успішно надіслано!"
 }
