@@ -24,10 +24,12 @@ export default function Home() {
   const { t } = useTranslation('common');
 
 
-  const { data, error, isLoading } = useSWR('/getAllJobs', get_job(locale))
+  const { data, error, isLoading } = useSWR('/getAllJobs', () => get_job(locale))
 
   useEffect(() => {
-    if (data) dispatch(setJobData(data?.data))
+    if (data) {
+      dispatch(setJobData(data?.data))
+    }
   }, [data, dispatch])
 
 

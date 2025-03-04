@@ -15,7 +15,7 @@ export const post_job = async (formData, locale) => {
             },
             body: JSON.stringify(formData),
         })
-        const data = res.json();
+        const data = awaitres.json();
         return data;
     } catch (error) {
         console.log('error in post job (service) => ', error);
@@ -33,7 +33,8 @@ export const get_job = async (locale) => {
                 'Accept-Language': locale,
             }
         })
-        const data = res.json();
+        const data = await res.json();
+        console.log('service data', data)
         return data;
     } catch (error) {
         console.log('error in getting job (service) => ', error);
@@ -50,7 +51,7 @@ export const get_specified_job = async (id, locale) => {
                 'Accept-Language': locale,
             }
         })
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in getting  specified job (service) => ', error);
@@ -88,7 +89,7 @@ export const get_my_applied_job = async (id, locale) => {
             headers : {'Authorization': `Bearer ${Cookies.get('token')}`},
             'Accept-Language': locale,
         })
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in getting  getting my all job (service) => ', error);
@@ -107,7 +108,7 @@ export const get_my_posted_job = async (id, locale) => {
                 'Accept-Language': locale,
             }
         })
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in   getting my all job (service) => ', error);
@@ -126,7 +127,7 @@ export const get_all_applications = async (id, locale) => {
                 'Accept-Language': locale,
             }
         })
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in   getting my all application of specified jobs (service) => ', error);
@@ -147,7 +148,7 @@ export const change_application_status = async (formData, locale) => {
             },
             body: JSON.stringify(formData),
         })
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in   getting my all application of specified jobs (service) => ', error);
@@ -165,7 +166,7 @@ export const get_application_details = async (id, locale) => {
                 'Accept-Language': locale,
             }
         })
-        const data = res.json();
+        const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in   getting my all application of specified jobs (service) => ', error);
