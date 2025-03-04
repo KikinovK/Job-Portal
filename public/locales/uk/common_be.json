@@ -1,0 +1,29 @@
+{
+  "email_not_found": "Електронну пошту не знайдено",
+  "password_updated_successfully": "Пароль успішно оновлено",
+  "error": "Щось пішло не так, будь ласка, спробуйте пізніше!",
+  "account_not_found": "Обліковий запис не знайдено",
+  "incorrect_password": "Невірний пароль",
+  "login_successfull": "Вхід успішний",
+  "user_already_exist": "Користувач вже існує",
+  "account_created_successfully": "Обліковий запис успішно створено",
+  "validation": {
+    "email_invalid": "Некоректна електронна пошта",
+    "email_required": "Електронна пошта є обов'язковою",
+    "password_min": "Пароль повинен містити не менше 8 символів",
+    "password_required": "Пароль є обов'язковим",
+    "name_required": "Ім'я є обов'язковим",
+    "job_required": "Вакансія є обов'язковою",
+    "user_required": "Користувач є обов'язковим",
+    "about_required": "Поле опису є обов'язковим"
+  },
+  "error_login": "Будь ласка, увійдіть",
+  "error_retry_login": "Щось пішло не так, будь ласка, спробуйте увійти знову!",
+  "error_request": "Некоректний запит",
+  "status_updated_successfully": "Статус успішно оновлено",
+  "job_already_bookmarked": "Ця вакансія вже додана до закладок",
+  "job_bookmarked_successfully": "Вакансія успішно додана до закладок!",
+  "job_removed_successfully": "Вакансія успішно видалена!",
+  "job_application_submitted_successfully": "Заявку на вакансію успішно надіслано!",
+  "job_posted_successfully": "Вакансію успішно опубліковано"
+}

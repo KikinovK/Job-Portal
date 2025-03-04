@@ -1,20 +1,23 @@
 // i18n.js
 import i18next from 'i18next';
-import Backend from 'i18next-fs-backend';
-import path from 'path';
+import Backend from 'i18next-http-backend';
+
+const loadPath = process.env.NEXT_APP_I18N_LOAD_PATH
+  ? `${process.env.NEXT_APP_I18N_LOAD_PATH}/locales/{{lng}}/{{ns}}.json`
+  : `${process.env.NEXT_PUBLIC_API_BASE_URL}/locales/{{lng}}/{{ns}}.json`;
 
 i18next
   .use(Backend)
   .init({
-    initImmediate: false,
+    // initImmediate: false,
     backend: {
-      loadPath: path.join(process.cwd(), '/locales/{{lng}}/{{ns}}.json'),
+      loadPath: loadPath,
     },
     // debug: true, // Включение режима отладки
     fallbackLng: 'en',
     preload: ['en', 'uk'],
-    ns: ['common'],
-    defaultNS: 'common',
+    ns: ['common_be'],
+    defaultNS: 'common_be',
     interpolation: {
       escapeValue: false,
     },
