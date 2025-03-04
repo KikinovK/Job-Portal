@@ -24,12 +24,13 @@ export const post_job = async (formData, locale) => {
 
 
 // get job api
-export const get_job = async () => {
+export const get_job = async (locale) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getAllJobs`, {
             method: 'GET',
             headers : {
-                'Authorization': `Bearer ${Cookies.get('token')}`
+                'Authorization': `Bearer ${Cookies.get('token')}`,
+                'Accept-Language': locale,
             }
         })
         const data = res.json();

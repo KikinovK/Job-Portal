@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useDispatch } from 'react-redux'
 import { setUserToken, setUserData } from '@/Utils/UserSlice'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 import { toast } from 'react-toastify'
 import useSWR from 'swr'
@@ -19,10 +20,11 @@ export default function Home() {
   const dispatch = useDispatch();
   const token = Cookies.get('token');
 
-  const { t } = useTranslation('common')
+  const { locale } = useRouter();
+  const { t } = useTranslation('common');
 
 
-  const { data, error, isLoading } = useSWR('/getAllJobs', get_job)
+  const { data, error, isLoading } = useSWR('/getAllJobs', get_job(locale))
 
   useEffect(() => {
     if (data) dispatch(setJobData(data?.data))
