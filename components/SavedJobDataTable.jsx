@@ -1,9 +1,9 @@
 
 import { delete_book_mark_job } from '@/Services/job/bookmark';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react'
 import { AiFillDelete } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setBookMark } from '@/Utils/AppliedJobSlice'
 import { toast , ToastContainer } from 'react-toastify';
 import CustomDataTable from './ui/CustomDataTable';
 
@@ -11,26 +11,12 @@ import { useTranslation } from 'next-i18next';
 
 export default function SavedJobDataTable() {
     const router = useRouter();
-    const bookMarkJobData = useSelector(state => state.AppliedJob.bookMark)
+    const bookMarkJobData = useSelector(state => state.AppliedJob.bookMark);
 
-    const [Data, setData] = useState([]);
+    const dispatch = useDispatch();
 
     const { t } = useTranslation('savedJobDataTable');
-
-
-
-
-    useEffect(() => {
-        setData(bookMarkJobData)
-    }, [])
-
-    // const [search, setSearch] = useState('');
-    // const [filteredData, setFilteredData] = useState([]);
-
-    // useEffect(() => {
-    //     setFilteredData(Data);
-    // }, [Data])
-
+    const { locale } = router;
 
 
     const columns = [
@@ -60,28 +46,12 @@ export default function SavedJobDataTable() {
         },
     ];
 
-
-
-
-    // useEffect(() => {
-    //     if (search === '') {
-    //         setFilteredData(Data);
-    //     } else {
-    //         setFilteredData(Data?.filter((item) => {
-    //             const itemData = item?.job?.company.toUpperCase();
-    //             const textData = search.toUpperCase();
-    //             return itemData.indexOf(textData) > -1;
-    //         }))
-    //     }
-
-
-    // }, [search, Data])
-
-
     const handleDelete = async  (id) => {
-        const res =  await delete_book_mark_job(id);
+        const res =  await delete_book_mark_job(id, locale);
         if(res.success) {
-           return setFilteredData(filteredData.filter(item => item?._id !== id))
+            dispatch(setBookMark(bookMarkJobData.filter(item => item?._id !== id)))
+            toast.success(res.message);
+            return
         }
         else{
           return  toast.error(res.message);
@@ -93,33 +63,11 @@ export default function SavedJobDataTable() {
         <>
             <CustomDataTable
                 columns={columns}
-                data={Data}
-                title={`${t('total_saved_jobs')} ${Data?.length}`}
+                data={bookMarkJobData}
+                title={`${t('total_saved_jobs')} ${bookMarkJobData?.length}`}
                 searchPlaceholder={t('search_placeholder')}
             />
 
-                        {/* <DataTable
-                            subHeaderAlign={"right"}
-                            columns={columns}
-                            data={filteredData}
-                            keyField="id"
-                            pagination
-                            title={`${t('total_saved_jobs')} ${Data?.length}`}
-                            fixedHeader
-                            fixedHeaderScrollHeight='79%'
-                            selectableRows
-                            selectableRowsHighlight
-                            subHeader
-                            persistTableHead
-                            subHeaderComponent={
-                                <input className='w-60  py-2 px-2  outline-none  border-b-2 border-indigo-600' type={"search"}
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    placeholder={t('search_placeholder')} />
-                            }
-                            className="h-screen bg-white"
-                            noDataComponent={<MessageDataTable>{t('table:no_data_message')}</MessageDataTable>}
-                        /> */}
 
             <ToastContainer/>
         </>

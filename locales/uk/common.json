@@ -12,6 +12,15 @@
     "email_required": "Електронна пошта є обов'язковою",
     "password_min": "Пароль повинен містити не менше 8 символів",
     "password_required": "Пароль є обов'язковим",
-    "name_required": "Ім'я є обов'язковим"
-  }
+    "name_required": "Ім'я є обов'язковим",
+    "job_required": "Вакансія є обов'язковою",
+    "user_required": "Користувач є обов'язковим"
+  },
+  "error_login": "Будь ласка, увійдіть",
+  "error_retry_login": "Щось пішло не так, будь ласка, спробуйте увійти знову!",
+  "error_request": "Некоректний запит",
+  "status_updated_successfully": "Статус успішно оновлено",
+  "job_already_bookmarked": "Ця вакансія вже додана до закладок",
+  "job_bookmarked_successfully": "Вакансія успішно додана до закладок!",
+  "job_removed_successfully": "Вакансія успішно видалена!"
 }

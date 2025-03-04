@@ -44,8 +44,8 @@ export default function Dashboard() {
 
   const fetchAppliedJobs = async () => {
 
-    const res = await get_my_applied_job(id, locale)
-    const get_bookmarks =   await get_book_mark_job(id, locale)
+    const res = id ? await get_my_applied_job(id, locale) : { success: false }
+    const get_bookmarks =  id ? await get_book_mark_job(id, locale) : { success: false }
     if (res.success || get_bookmarks.success) {
       dispatch(setAppliedJob(res?.data))
       dispatch(setBookMark(get_bookmarks?.data))
