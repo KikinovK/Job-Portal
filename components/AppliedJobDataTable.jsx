@@ -19,13 +19,6 @@ export default function AppliedJobDataTable() {
         setData(appliedJobData)
     }, [])
 
-    // const [search, setSearch] = useState('');
-    // const [filteredData, setFilteredData] = useState([]);
-
-    // useEffect(() => {
-    //     setFilteredData(Data);
-    // }, [Data])
-
 
 
 
@@ -57,24 +50,6 @@ export default function AppliedJobDataTable() {
         },
     ];
 
-
-
-
-    // useEffect(() => {
-    //     if (search === '') {
-    //         setFilteredData(Data);
-    //     } else {
-    //         setFilteredData(Data?.filter((item) => {
-    //             const itemData = item?.job?.company.toUpperCase();
-    //             const textData = search.toUpperCase();
-    //             return itemData.indexOf(textData) > -1;
-    //         }))
-    //     }
-
-
-    // }, [search, Data])
-
-
     return (
         <>
             <CustomDataTable
@@ -83,31 +58,6 @@ export default function AppliedJobDataTable() {
                 title={`${t('total_applied_jobs')} ${Data?.length}`}
                 searchPlaceholder={t('search_placeholder')}
             />
-{/*
-                        <DataTable
-                            subHeaderAlign={"right"}
-                            columns={columns}
-                            data={filteredData}
-                            keyField="id"
-                            pagination
-                            title={`Total Applied Jobs: ${Data?.length}`}
-                            fixedHeader
-                            fixedHeaderScrollHeight='79%'
-                            selectableRows
-                            selectableRowsHighlight
-                            subHeader
-                            persistTableHead
-                            subHeaderComponent={
-                                <input className='w-60  py-2 px-2  outline-none  border-b-2 border-indigo-600' type={"search"}
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    placeholder={"Search with company name..."} />
-                            }
-                            className="h-screen bg-white"
-                            noDataComponent={<MessageDataTable>{t('table:no_data_message')}</MessageDataTable>}
-                        /> */}
-
-
         </>
     )
 }

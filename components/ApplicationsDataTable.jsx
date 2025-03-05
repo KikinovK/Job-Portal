@@ -21,16 +21,6 @@ export default function ApplicationsDataTable({ application }) {
     }, [application])
 
 
-
-
-    // const [search, setSearch] = useState('');
-    // const [filteredData, setFilteredData] = useState([]);
-
-    // useEffect(() => {
-    //     setFilteredData(Data);
-    // }, [Data])
-
-
     const handleAcceptStatus = async (id) => {
         const data = { id, status: "approved" }
         const res = await change_application_status(data, locale);
@@ -99,23 +89,6 @@ export default function ApplicationsDataTable({ application }) {
     ];
 
 
-
-
-    // useEffect(() => {
-    //     if (search === '') {
-    //         setFilteredData(Data);
-    //     } else {
-    //         setFilteredData(Data?.filter((item) => {
-    //             const itemData = item?.user?.name.toUpperCase();
-    //             const textData = search.toUpperCase();
-    //             return itemData.indexOf(textData) > -1;
-    //         }))
-    //     }
-
-
-    // }, [search, Data])
-
-
     return (
         <>
             <CustomDataTable
@@ -124,29 +97,6 @@ export default function ApplicationsDataTable({ application }) {
                 title={`${t('total_applications_title')} ${Data?.length}`}
                 searchPlaceholder={t('search_placeholder')}
             />
-
-            {/* <DataTable
-                subHeaderAlign={"right"}
-                columns={columns}
-                data={filteredData}
-                keyField="id"
-                pagination
-                title={`${t('total_applications_title')} ${Data?.length}`}
-                fixedHeader
-                fixedHeaderScrollHeight='79%'
-                selectableRows
-                selectableRowsHighlight
-                subHeader
-                persistTableHead
-                subHeaderComponent={
-                    <input className='w-60  py-2 px-2  outline-none  border-b-2 border-indigo-600' type={"search"}
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder={t('search_placeholder')} />
-                }
-                className="h-screen bg-white"
-                noDataComponent={<MessageDataTable>{t('table:no_data_message')}</MessageDataTable>}
-            /> */}
 
 
         </>
