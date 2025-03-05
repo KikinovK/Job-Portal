@@ -34,7 +34,6 @@ export const get_job = async (locale) => {
             }
         })
         const data = await res.json();
-        console.log('service data', data)
         return data;
     } catch (error) {
         console.log('error in getting job (service) => ', error);
