@@ -179,7 +179,7 @@ export default function PostAJob() {
                         <label htmlFor="jobdate" className='mb-1 text-base font-semibold'>{t('job_deadline_label')}</label>
                         <DatePicker
                             id='jobdate'
-                            selected={formData.job_deadline} // Передаем текущую дату из состояния
+                            selected={formData.job_deadline}
                             onChange={(date) => setFormData({ ...formData, job_deadline: date })}
                             locale={locale}
                             dateFormat="dd/MM/yyyy"

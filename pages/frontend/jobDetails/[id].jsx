@@ -82,7 +82,7 @@ export default function JobDetails() {
     }
 
     return (
-        <Loading isLoading={isLoading && !ready} locale={locale}>
+        <Loading isLoading={isLoading || !ready} locale={locale}>
             <ToastContainer />
             <NavBar />
             <div className='w-full  py-20 flex items-center md:px-8 px-2  justify-center flex-col  '>

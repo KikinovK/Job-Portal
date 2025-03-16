@@ -42,7 +42,7 @@ export default function PostedJobsDetails() {
     if(error) toast.error(error)
 
     return (
-        <Loading isLoading={isLoading && !ready} locale={locale}>
+        <Loading isLoading={isLoading || !ready} locale={locale}>
             <NavBar />
             <div className='w-full  pt-20'>
                 <div className='w-full h-20 bg-gray-50 text-indigo-600 font-bold flex items-center justify-center flex-col'>

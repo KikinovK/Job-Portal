@@ -9,6 +9,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from '@/components/Loading';
 
 export default function ApplyJob() {
     const router = useRouter()
@@ -20,7 +21,7 @@ export default function ApplyJob() {
     const [error, setError] = useState({ name: '', email: "", about: '', job: '', user: '', cv: '' });
 
     const { locale } = router;
-    const { t } = useTranslation('applyJob');
+    const { t, ready } = useTranslation('applyJob');
 
 
     const { name, email, about, job, user } = formikData;
@@ -87,7 +88,7 @@ export default function ApplyJob() {
     }
 
     return (
-        <>
+        <Loading isLoading={!ready} locale={locale}>
             <NavBar />
             <div className='w-full  py-20 flex items-center  justify-center flex-col'>
                 <h1 className='text-xl mt-4 uppercase tracking-widest border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl'>{t('enter_your_info')}</h1>
@@ -125,7 +126,7 @@ export default function ApplyJob() {
                 </form>
             </div>
             <ToastContainer />
-        </>
+        </Loading>
     )
 }
 
