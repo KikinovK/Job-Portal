@@ -4,14 +4,14 @@ import JobsCard from '@/components/JobsCard';
 import NavBar from '@/components/NavBar'
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react'
-import { InfinitySpin } from 'react-loader-spinner';
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
 
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Loading from '@/components/Loading';
 
 export default function PostedJobs() {
     const router = useRouter();
@@ -40,33 +40,21 @@ export default function PostedJobs() {
     if(error) toast.error(error)
 
     return (
-        <>
-            {
-                isLoading ? (
-
-                    <div className='bg-gray w-full h-screen flex items-center flex-col justify-center'>
-                        <InfinitySpin width='200' color="#4f46e5" />
-                        <p className='text-xs uppercase'>{t('common:loading')}</p>
-                    </div>
-                ) : (
-                    <>
-                        <NavBar />
-                        <div className='w-full  pt-20'>
-                            <div className='w-full h-20 bg-gray-50 text-indigo-600 font-bold flex items-center justify-center flex-col'>
-                                <h1 className='text-3xl'>{t('title')}</h1>
-                            </div>
-                            <div className='w-full h-full px-4 py-4 flex  overflow-y-auto  items-start justify-center flex-wrap'>
-                                {
-                                    myJobs?.map((job, index) => (
-                                        <JobsCard key={index} job={job}  posted={true}/>
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    </>
-                )
-            }
-        </>
+        <Loading isLoading={isLoading} locale={locale}>
+            <NavBar />
+            <div className='w-full  pt-20'>
+                <div className='w-full h-20 bg-gray-50 text-indigo-600 font-bold flex items-center justify-center flex-col'>
+                    <h1 className='text-3xl'>{t('title')}</h1>
+                </div>
+                <div className='w-full h-full px-4 py-4 flex  overflow-y-auto  items-start justify-center flex-wrap'>
+                    {
+                        myJobs?.map((job, index) => (
+                            <JobsCard key={index} job={job}  posted={true}/>
+                        ))
+                    }
+                </div>
+            </div>
+        </Loading>
     )
 }
 

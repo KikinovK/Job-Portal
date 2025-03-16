@@ -10,9 +10,9 @@ import { toast } from 'react-toastify'
 import useSWR from 'swr'
 import { get_job } from '@/Services/job'
 import { setJobData } from '@/Utils/JobSlice'
-import { InfinitySpin } from 'react-loader-spinner'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Loading from '@/components/Loading'
 
 
 
@@ -61,21 +61,13 @@ export default function Home() {
         <meta name="language" content={t('language')} />
       </Head>
 
-      {
-        isLoading ? (
-          <div className='bg-gray w-full h-screen flex items-center flex-col justify-center'>
-            <InfinitySpin width='200' color="#4f46e5" />
-            <p className='text-xs uppercase'>{t('loading')}</p>
-          </div>
-        ) : (
-          <>
-            <NavBar />
-            <div className="w-full h-screen bg-gray-200  text-black">
-              <Intro />
-            </div>
-          </>
-        )
-      }
+      <Loading isLoading={isLoading} locale={locale}>
+        <NavBar />
+        <div className="w-full h-screen bg-gray-200  text-black">
+          <Intro />
+        </div>
+      </Loading>
+
     </>
   )
 }
