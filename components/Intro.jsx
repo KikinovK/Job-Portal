@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import Image from 'next/image'
 import { BsFillBookmarkFill } from 'react-icons/bs'
@@ -12,6 +12,12 @@ export default function Intro() {
   const jobData = useSelector(state => state.Job.JobData);
   const [filterJobs, setFilteredJobs] = useState([]);
   const [doneSearch, setDoneSearch] = useState(false);
+
+  const uniqueCategories = [...new Set(jobData?.map(job => job?.job_category).filter(Boolean))]
+  .map((category, index) => ({
+    name: category,
+    id: index + 1,
+  }));
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -40,9 +46,13 @@ export default function Intro() {
               <h1 className='font-semibold text-lg'>{t('intro:suggest_tag')}</h1>
             </div>
             <div className='flex   items-center justify-center px-4 flex-wrap'>
-              <p className='px-2  text-gray-600'>{t('intro:tag_software')}</p>
-              <p className='px-2  text-gray-600'>{t('intro:tag_marketing')}</p>
-              <p className='px-2  text-gray-600'>{t('intro:tag_uiux')}</p>
+              {
+                uniqueCategories?.map((category) => {
+                  return (
+                    <p key={category.id} className='px-2  text-gray-600'>{category.name}</p>
+                  )
+                })
+              }
             </div>
           </div>
         </div>
