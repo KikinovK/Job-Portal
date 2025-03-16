@@ -29,7 +29,7 @@ export default function AppliedJobDataTable() {
         },
         {
             title: t('company'),
-            name: 'Company',
+            name: t('company'),
             selector: row => row?.job?.company,
         },
         {
