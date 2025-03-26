@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BiSearchAlt } from 'react-icons/bi'
 import Image from 'next/image'
 import { BsFillBookmarkFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux';
 import JobsCard from './JobsCard';
+import { useTranslation } from 'next-i18next';
 
 export default function Intro() {
+  const { t } = useTranslation('intro');
   const [search, setSearch] = useState('');
   const jobData = useSelector(state => state.Job.JobData);
-  const [filterJobs, setFilteredJobs] = useState([])
-  const [doneSearch , setDoneSearch] = useState(false)
+  const [filterJobs, setFilteredJobs] = useState([]);
+  const [doneSearch, setDoneSearch] = useState(false);
 
-
-
+  const uniqueCategories = [...new Set(jobData?.map(job => job?.job_category).filter(Boolean))]
+  .map((category, index) => ({
+    name: category,
+    id: index + 1,
+  }));
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -21,29 +26,33 @@ export default function Intro() {
       return x?.toUpperCase() === search?.toUpperCase().trim();
     });
     setFilteredJobs(filteredJobs);
-    setDoneSearch(true)
-  }
+    setDoneSearch(true);
+  };
 
   return (
     <>
       <div className='w-full  h-full flex items-center lg:justify-start py-24 justify-center flex-wrap  '>
         <div className='lg:w-3/6 w-full sm:p-2 h-full my-2 flex items-center justify-center px-4 md:items-start md:justify-start md:p-20 flex-col '>
-          <h1 className='md:text-6xl text-2xl sm:text-2xl font-extrabold mb-4 text-black '>To Choose <span className='text-indigo-600'>Right Jobs.</span> </h1>
-          <p className='md:text-lg sm:text-sm text-xs mb-20 text-gray-400'>2400 Peoples are daily search in this portal, 100 user added job portal!</p>
-          <div className='bg-white flex-col mb-6 w-full md:px-4   py-4 flex sm:flex-row items-center justify-center'>
+          <h1 className='md:text-6xl text-2xl sm:text-2xl font-extrabold mb-4 text-black '>{t('intro:title')} <span className='text-indigo-600'>{t('intro:title_highlight')}</span> </h1>
+          <p className='md:text-lg sm:text-sm text-xs mb-20 text-gray-400'>{t('intro:description')}</p>
+          <form onSubmit={handleSearch} className='bg-white flex-col mb-6 w-full md:px-4   py-4 flex sm:flex-row items-center justify-center'>
             <BiSearchAlt className='text-2xl text-indigo-600 mx-2 hidden sm:flex' />
-            <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Search Jobs with Job categories like marketing ...' className='xs:w-full w-3/4  h-full px-2 bg-gray-200 text-base py-3 outline-none' />
-            <button onClick={handleSearch} className='px-3 py-2 my-2 sm:my-0 border border-indigo-600 rounded uppercase tracking-widest mx-4   text-white bg-indigo-600 transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-indigo-600'>Search</button>
-          </div>
+            <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder={t('intro:search_placeholder')} className='xs:w-full w-3/4  h-full px-2 bg-gray-200 text-base py-3 outline-none' />
+            <button type="submit" className='px-3 py-2 my-2 sm:my-0 border border-indigo-600 rounded uppercase tracking-widest mx-4   text-white bg-indigo-600 transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-indigo-600'>{t('intro:search_button')}</button>
+          </form>
           <div className=' w-full px-2 py-2 flex items-center justify-start flex-wrap'>
             <div className='flex items-center justify-center'>
               <BsFillBookmarkFill className='text-indigo-600 text-xl mx-2' />
-              <h1 className='font-semibold text-lg'>Suggest Tag : </h1>
+              <h1 className='font-semibold text-lg'>{t('intro:suggest_tag')}</h1>
             </div>
             <div className='flex   items-center justify-center px-4 flex-wrap'>
-              <p className='px-2  text-gray-600'>Software</p>
-              <p className='px-2  text-gray-600'>Marketing</p>
-              <p className='px-2  text-gray-600'>UI/UX Design</p>
+              {
+                uniqueCategories?.map((category) => {
+                  return (
+                    <p key={category.id} className='px-2  text-gray-600'>{category.name}</p>
+                  )
+                })
+              }
             </div>
           </div>
         </div>
@@ -59,7 +68,7 @@ export default function Intro() {
                 return (
                   <JobsCard job={job} key={job?._id} />
                 )
-              }) : <p className='text-sm text-center font-semibold  text-red-500'>Sorry No such Categories Job Available Right Now</p>
+              }) : <p className='text-sm text-center font-semibold  text-red-500'>{t('intro:no_results')}</p>
             }
           </div>
         )
@@ -67,5 +76,3 @@ export default function Intro() {
     </>
   )
 }
-
-

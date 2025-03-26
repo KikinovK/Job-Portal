@@ -4,8 +4,12 @@ import { BsDot } from 'react-icons/bs'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 
+import { useTranslation } from 'next-i18next';
+
 export default function JobsCard({job , posted}) {
     const router = useRouter();
+    const { t } = useTranslation('jobsCard');
+
     return (
         <div key={job._id} className='w-full cursor-pointer  transition-all duration-1000  md:w-5/12 m-4 border hover:shadow-xl rounded px-4 md:flex md:flex-wrap'>
             <div className='mb-4 flex  items-center justify-center py-2 '>
@@ -18,12 +22,12 @@ export default function JobsCard({job , posted}) {
             <div className='mb-4 flex   items-start justify-center py-2 flex-col'>
                 <div className='flex  px-2 py-2 items-center justify-center '>
                     <BsDot className='text-4xl font-extrabold text-indigo-600' />
-                    <h1 className='text-lg text-gray-900'>Salary :</h1>
+                    <h1 className='text-lg text-gray-900'>{t('salary_label')}</h1>
                     <p className='text-base  font-semibold'>{job?.salary}$ / month</p>
                 </div>
                 <div className='flex px-2 py-2 items-center  justify-center'>
                     <BsDot className='text-4xl font-extrabold text-indigo-600' />
-                    <h1 className='text-lg text-gray-900'>Deadline :</h1>
+                    <h1 className='text-lg text-gray-900'>{t('deadline_label')} :</h1>
                     <p className='text-base  font-semibold'>{new Date(`${job?.job_deadline}`).toLocaleDateString('en-GB')}</p>
                 </div>
             </div>
@@ -36,10 +40,10 @@ export default function JobsCard({job , posted}) {
                 </div>
                 {
                     posted ? (
-                        <button onClick={() => router.push(`/frontend/detailPostedJob/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold'>View Applications <AiOutlineArrowRight className='mx-2 text-xl' /></button>
+                        <button onClick={() => router.push(`/frontend/detailPostedJob/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold'>{t('view_applications_button')} <AiOutlineArrowRight className='mx-2 text-xl' /></button>
                     ) : (
 
-                        <button onClick={() => router.push(`/frontend/jobDetails/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold'>View Detail <AiOutlineArrowRight className='mx-2 text-xl' /></button>
+                        <button onClick={() => router.push(`/frontend/jobDetails/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold'>{t('view_detail_button')} <AiOutlineArrowRight className='mx-2 text-xl' /></button>
                     )
                 }
             </div>

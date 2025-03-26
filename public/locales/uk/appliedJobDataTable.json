@@ -1,0 +1,11 @@
+{
+  "apply_date": "Дата подання заявки",
+  "company": "Компанія",
+  "job_title": "Назва вакансії",
+  "job_salary": "Зарплата",
+  "status": "Статус",
+  "action": "Дія",
+  "view_detail": "Переглянути деталі",
+  "total_applied_jobs": "Всього поданих заявок: ",
+  "search_placeholder": "Пошук за назвою компанії..."
+}

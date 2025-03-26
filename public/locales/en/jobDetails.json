@@ -1,0 +1,20 @@
+{
+  "title": "Job Details",
+  "job_poster": "Job Poster",
+  "email": "Email",
+  "location": "Location",
+  "category": "Category",
+  "job_type": "Job Type",
+  "salary": "Salary",
+  "unable_to_apply": "unable Apply to your Own jobs",
+  "apply_position": "Apply Position",
+  "job_description": "Job Description",
+  "job_summary": "Job Summary",
+  "total_vacancies": "Total Vacancies",
+  "deadline": "Dead Line",
+  "experience_required": "Experience Required",
+  "related_jobs": "Related Jobs",
+  "no_similar_jobs": "No Other similar Jobs Available ...",
+  "view_detail": "View Detail",
+  "login_first_error": "Please Login First"
+}

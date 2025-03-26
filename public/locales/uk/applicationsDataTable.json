@@ -1,0 +1,13 @@
+{
+  "name": "Ім'я",
+  "email": "Електронна пошта",
+  "status": "Статус",
+  "cv": "Резюме",
+  "action": "Дія",
+  "download_cv": "Завантажити резюме",
+  "details_button": "Деталі",
+  "approved_button": "Схвалено",
+  "reject_button": "Відхилити",
+  "total_applications_title": "Всього заявок :",
+  "search_placeholder": "Пошук за ім'ям заявника..."
+}

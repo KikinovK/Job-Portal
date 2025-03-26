@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./next-i18next.config');
 
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -27,6 +28,20 @@ const nextConfig = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js'
+  },
+  i18n,
+  webpack: (config, { isServer }) => {
+    config.resolve.alias['react-datepicker/dist/react-datepicker.css'] = path.join(
+      __dirname,
+      'node_modules',
+      'react-datepicker',
+      'dist',
+      'react-datepicker.css'
+    );
+    return config;
+  },
+  compiler: {
+    styledComponents: true,
   },
 }
 

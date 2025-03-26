@@ -1,0 +1,20 @@
+{
+  "enter_your_info": "Введіть ваші дані",
+  "name_label": "Ім'я :",
+  "name_placeholder": "Введіть ім'я",
+  "email_label": "Електронна пошта :",
+  "email_placeholder": "Введіть електронну пошту",
+  "about_label": "Про :",
+  "about_placeholder": "Введіть опис",
+  "upload_cv_label": "Завантажте резюме :",
+  "submit_button": "Надіслати",
+  "name_required_error": "Поле імені є обов'язковим",
+  "email_required_error": "Поле електронної пошти є обов'язковим",
+  "login_first_error": "Будь ласка, увійдіть спочатку",
+  "follow_apply_process_error": "Будь ласка, дотримуйтесь процесу подання заявки",
+  "about_required_error": "Поле опису є обов'язковим",
+  "upload_cv_error": "Будь ласка, завантажте резюме",
+  "upload_pdf_error": "Будь ласка, завантажте PDF-файл",
+  "application_submitted_success": "Ваша заявка надіслана, відбувається перенаправлення ...",
+  "something_went_wrong_error": "Щось пішло не так"
+}

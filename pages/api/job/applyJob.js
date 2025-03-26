@@ -6,13 +6,30 @@ import fs from 'fs';
 import path from 'path'
 import crypto from 'crypto';
 import validateToken from '@/middleware/tokenValidation';
+import i18next from '@/i18n_backend';
 
 const schema = Joi.object({
-    name: Joi.string().required(),
-    email: Joi.string().email().required(),
-    about: Joi.string().required(),
-    job: Joi.string().required(),
-    user: Joi.string().required(),
+    name: Joi.string().required().messages({
+        'string.empty': 'validation.name_required',
+        'any.required': 'validation.name_required',
+      }),
+    email: Joi.string().email().required().messages({
+        'string.email': 'validation.email_invalid',
+        'string.empty': 'validation.email_required',
+        'any.required': 'validation.email_required',
+      }),
+    about: Joi.string().required().messages({
+        'string.empty': 'validation.about_required',
+        'any.required': 'validation.about_required',
+      }),
+    job: Joi.string().required().messages({
+        'string.empty': 'validation.job_required',
+        'any.required': 'validation.job_required'
+    }),
+    user: Joi.string().required().messages({
+        'string.empty': 'validation.user_required',
+        'any.required': 'validation.user_required'
+    }),
 });
 
 export const config = {
@@ -24,6 +41,14 @@ export const config = {
 
 export default async (req, res) => {
     await ConnectDB();
+
+    const lng = req.headers['accept-language'] || (
+        Array.isArray(i18next.options.fallbackLng)
+            ? i18next.options.fallbackLng[0]
+            : i18next.options.fallbackLng
+    );
+    i18next.changeLanguage(lng);
+
     const { method } = req;
     switch (method) {
         case 'POST':
@@ -52,7 +77,7 @@ const applyToJob =  async (req, res) => {
 
             const oldPath = files.cv.filepath;
             const originalFileName  = files.cv.originalFilename
-            
+
 
 
             const fileExtension = path.extname(originalFileName);
@@ -90,17 +115,17 @@ const applyToJob =  async (req, res) => {
 
 
             const { error } = schema.validate({name , email , about , job , user});
-            if (error) return res.status(401).json({ success: false, message: error.details[0].message.replace(/['"]+/g, '') });
+            if (error) return res.status(401).json({ success: false, message: i18next.t(error.details[0].message) });
 
             const newJobApplication = AppliedJob.create(jobApplication);
-            return res.status(200).json({ success: true, message: 'Job application submitted successfully !' });
+            return res.status(200).json({ success: true, message: i18next.t('job_application_submitted_successfully') });
 
 
         })
     } catch (error) {
 
         console.log('error in apply job (server) => ', error);
-        return res.status(500).json({ success: false, message: 'something went wrong please retry login !' });
+        return res.status(500).json({ success: false, message: i18next.t('error_retry_login') });
     }
 
 
@@ -110,4 +135,3 @@ const applyToJob =  async (req, res) => {
 
 
 }
-

@@ -1,0 +1,20 @@
+{
+  "enter_your_info": "Enter Your Info",
+  "name_label": "Name :",
+  "name_placeholder": "Enter Name",
+  "email_label": "Email :",
+  "email_placeholder": "Enter Email",
+  "about_label": "About :",
+  "about_placeholder": "Enter description",
+  "upload_cv_label": "Upload CV :",
+  "submit_button": "Submit",
+  "name_required_error": "Name Field is required",
+  "email_required_error": "Email Field is required",
+  "login_first_error": "Please Login First",
+  "follow_apply_process_error": "Please Follow Apply Process",
+  "about_required_error": "About Field is required",
+  "upload_cv_error": "Please Upload CV",
+  "upload_pdf_error": "Please Upload a PDF file",
+  "application_submitted_success": "Your Application is Submitted , Redirecting ...",
+  "something_went_wrong_error": "Something Went Wrong"
+}

@@ -2,11 +2,19 @@ import ConnectDB from '@/DB/connectDB';
 import validateToken from '@/middleware/tokenValidation';
 import AppliedJob from '@/models/ApplyJob';
 
-
+import i18next from '@/i18n_backend';
 
 
 export default async (req, res) => {
     await ConnectDB();
+
+    const lng = req.headers['accept-language'] || (
+        Array.isArray(i18next.options.fallbackLng)
+            ? i18next.options.fallbackLng[0]
+            : i18next.options.fallbackLng
+    );
+    i18next.changeLanguage(lng);
+
     const { method } = req;
     switch (method) {
         case 'GET':
@@ -15,7 +23,7 @@ export default async (req, res) => {
             });
             break;
         default:
-            res.status(400).json({ success: false, message: 'Invalid Request' });
+            res.status(400).json({ success: false, message: i18next.t('error_request') });
     }
 }
 
@@ -23,15 +31,14 @@ export default async (req, res) => {
 const getAllApplicationsOfSpecifiedJob =  async (req, res) => {
     await ConnectDB();
     const data = req.query;
-    const id = data?.id
-
-    if(!id) return res.status(400).json({ success: false, message: "Please Login" })
+    const id = data?.id;
+    if(!id) return res.status(400).json({ success: false, message: i18next.t('error_login') })
 
     try {
         const gettingjobs = await AppliedJob.find({job : id}).populate('user');
         return res.status(200).json({ success: true, data: gettingjobs })
     } catch (error) {
         console.log('Error in getting a specifed Job job (server) => ', error);
-        return res.status(403).json({ success: false, message: "Something Went Wrong Please Retry login  !" })
+        return res.status(403).json({ success: false, message: i18next.t('error_retry_login') })
     }
 }
